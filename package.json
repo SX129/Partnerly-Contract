@@ -11,7 +11,10 @@
   "license": "ISC",
   "devDependencies": {
     "@nomiclabs/hardhat-waffle": "^2.0.6",
-    "chai": "^5.1.0",
     "hardhat": "^2.8.4"
+  },
+  "type": "commonjs",
+  "dependencies": {
+    "chai": "^4.3.4"
   }
 }
