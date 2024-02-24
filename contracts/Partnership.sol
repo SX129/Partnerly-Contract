@@ -5,21 +5,33 @@ import "hardhat/console.sol";
 
 contract Partnership {
     string private deploymentMessage = "Contract is deployed.";
-    uint256 private partnerAmount = 2;
+    uint256[] public splitRatios;
     address[] public addresses;
+    uint256 private splitRatiosTotal;
 
-    constructor(address[] memory _addresses) {
+    constructor(address[] memory _addresses, uint256[] memory _splitRatios) {
         require(
-            _addresses.length == partnerAmount,
-            "The can't have more than 2 partners."
+            _addresses.length > 1,
+            "More than one address should be provided to establish a partnership"
+        );
+
+        require(
+            _splitRatios.length == _addresses.length,
+            "The address amount and the split ratio amount should be equal"
         );
 
         addresses = _addresses;
+        splitRatios = _splitRatios;
 
         console.log(deploymentMessage);
     }
 
-    function getPartnerAmount() public view returns(uint256){
-        return partnerAmount;
+    function getSplitRatiosTotal(uint256[] memory _splitRatios) private pure returns(uint256){
+        uint256 total = 0;
+        for(uint256 i = 0; i < _splitRatios.length; i++){
+            require(_splitRatios[i] > 0, "Split ratio can not be 0 or less");
+            total += _splitRatios[i];
+        }
+        return total;
     }
 }
