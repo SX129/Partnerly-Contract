@@ -18,4 +18,8 @@ contract Partnership {
 
         console.log(deploymentMessage);
     }
+
+    function getPartnerAmount() public view returns(uint256){
+        return partnerAmount;
+    }
 }
