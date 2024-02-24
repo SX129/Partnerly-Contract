@@ -3,11 +3,16 @@ const hre = require("hardhat");
 async function main() {
     await hre.run("compile");
 
-    const Contract = await hre.ethers.getContractFactory("Partnership");
+    // Get objects for the two accounts
+    const[owner, person1] = await hre.ethers.getSigners();
+    const addresses = [owner.address, person1.address];
 
-    const contract = await Contract.deploy();
+    const Contract = await hre.ethers.getContractFactory("Partnership");
+    const contract = await Contract.deploy(addresses);
 
     await contract.deployed();
+    await console.log(await contract.getPartnerAmount());
+    await console.log(await contract.addresses(0));
 }
 
 main()
