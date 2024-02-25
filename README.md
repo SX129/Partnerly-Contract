@@ -1,6 +1,6 @@
 # Simple Solidity Contract
 
-A very simple soldiity contract used to ensure proper splitting of Ethereum into different accounts.
+A very simple solidity contract used to ensure proper splitting of Ethereum into different accounts.
 
 
 ## Tech Stack
